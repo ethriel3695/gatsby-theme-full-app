@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "gatsby";
+import { graphql, useStaticQuery, Link } from "gatsby";
 import { withStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import Button from "@material-ui/core/Button";
 
 import HeaderText from "../Text/TypographyH6";
 import SimpleAppBar from "./SimpleAppBar";
@@ -36,6 +37,20 @@ const styles = {
     color: "#7b1bb3",
   },
 };
+
+const data = useStaticQuery(graphql`
+  query {
+    allNavigation(sort: { fields: loadOrder, order: ASC }) {
+      nodes {
+        id
+        route
+        label
+        loadOrder
+      }
+    }
+  }
+`);
+const navList = data.allNavigation.nodes;
 
 class Header extends React.Component {
   state = {
@@ -82,26 +97,38 @@ class Header extends React.Component {
         </HeaderText>
         {isAuthenticated() && (
           <SwipeDrawer left={left} toggleDrawer={this.toggleDrawer}>
-            <NavigationList />
+            <NavigationList navList={navList} />
           </SwipeDrawer>
         )}
         <div>
-          <HeaderButton
-            aria-owns={open ? "menu-appbar" : undefined}
-            onClick={this.handleMenu}
-          >
-            <AccountCircle className={classes.foregroundColor} />
-          </HeaderButton>
-          {
-            <UserMenu
-              anchorEl={anchorEl}
-              open={open}
-              handleClose={this.handleClose}
-              login={login}
-              logout={logout}
-              isAuthenticated={isAuthenticated}
-            />
-          }
+          {isAuthenticated() && (
+            <React.Fragment>
+              <HeaderButton
+                aria-owns={open ? "menu-appbar" : undefined}
+                onClick={this.handleMenu}
+              >
+                <AccountCircle className={classes.foregroundColor} />
+              </HeaderButton>
+
+              <UserMenu
+                anchorEl={anchorEl}
+                open={open}
+                handleClose={this.handleClose}
+                login={login}
+                logout={logout}
+                isAuthenticated={isAuthenticated}
+              />
+            </React.Fragment>
+          )}
+          {!isAuthenticated() && (
+            <Button
+              onClick={() => login()}
+              // color={buttonColor}
+              // autoFocus
+            >
+              Login / Signup
+            </Button>
+          )}
         </div>
       </SimpleAppBar>
     );

@@ -7,7 +7,6 @@ let idToken = null;
 let expiresAt = null;
 let isAuth = "loggedIn";
 const isBrowser = typeof window !== "undefined";
-console.log(process.env.AUTH0_DOMAIN);
 
 let auth0 = isBrowser
   ? new authorize0.WebAuth({
@@ -64,7 +63,7 @@ const setSession = (cb = () => {}) => (err, authResult) => {
       let userId = profileName.sub.split("|")[1];
       localStorage.setItem("profile", userId);
     });
-    navigate("/app/instruction");
+    navigate("/");
     cb();
   }
 };

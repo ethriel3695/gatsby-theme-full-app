@@ -26,6 +26,8 @@
     "auth0-js": "^9.11.1",
     "gatsby-plugin-material-ui": "^2.1.4",
     "gatsby-plugin-theme-ui": "^0.2.2",
+    "gatsby-source-filesystem": "^2.1.4",
+    "gatsby-transformer-yaml": "^2.2.1",
     "react-swipeable-views": "^0.13.3",
     "react-swipeable-views-utils": "^0.13.3",
     "reactstrap": "^8.0.0",

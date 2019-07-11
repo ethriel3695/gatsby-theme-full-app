@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import React from "react";
+import { Link } from "gatsby";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 
 export default function UserMenu({
   anchorEl,
@@ -16,17 +16,17 @@ export default function UserMenu({
       id="menu-appbar"
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={open}
       onClose={() => handleClose()}
     >
-      {!isAuthenticated() && (
+      {/* {!isAuthenticated() && (
         <MenuItem
           onClick={() => {
             login();
@@ -34,7 +34,7 @@ export default function UserMenu({
         >
           <Link to="/">Log In</Link>
         </MenuItem>
-      )}
+      )} */}
       {isAuthenticated() && (
         <MenuItem
           onClick={() => {
