@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-theme-developer-toolbook",
+  "name": "gatsby-theme-full-app",
   "author": "Reuben Ellis <thedevelopertoolbook@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ethriel3695/gatsby-theme-developer-toolbook.git"
+    "url": "https://github.com/ethriel3695/gatsby-theme-full-app.git"
   },
   "version": "1.0.1",
   "main": "index.js",
